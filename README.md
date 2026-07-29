@@ -1,12 +1,13 @@
-# 📊 ChurnAI: Telco Customer Churn Prediction & Retention Analytics
+# 📊 ChurnAI: Telco Customer Churn Prediction & Retention Analytics Platform
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688?style=for-the-badge&logo=fastapi)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.0%2B-F7931E?style=for-the-badge&logo=scikit-learn)
 ![SQLite](https://img.shields.io/badge/SQLite-SQLAlchemy-003B57?style=for-the-badge&logo=sqlite)
+![GitHub](https://img.shields.io/badge/GitHub-JestuAshok%2FChurnAI-181717?style=for-the-badge&logo=github)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-An end-to-end Machine Learning web application designed to predict customer churn probability, identify high-risk accounts in telecom subscriber bases, generate real-time actionable retention recommendations, and visualize strategic churn analytics.
+An end-to-end Machine Learning web platform designed to predict customer churn probability, identify high-risk accounts in telecom subscriber bases, generate real-time actionable retention recommendations, and visualize strategic churn analytics.
 
 ---
 
@@ -14,17 +15,17 @@ An end-to-end Machine Learning web application designed to predict customer chur
 
 Customer churn is one of the most critical metrics for subscription-based telecommunication providers. Retaining an existing customer is significantly more cost-effective than acquiring a new one. 
 
-**ChurnAI** bridges machine learning model training with a enterprise-ready full-stack application. It leverages engineered domain features, a tuned probability threshold classifier, SQLite historical audit logging, and an interactive web dashboard for real-time risk assessment and retention strategy execution.
+**ChurnAI** bridges machine learning model training with an enterprise-ready full-stack application. It leverages engineered domain features, a tuned probability threshold classifier, SQLite historical audit logging, and an interactive executive web dashboard for real-time risk assessment and retention strategy execution.
 
 ---
 
 ## ✨ Key Features
 
-- 🔮 **Real-Time Machine Learning Prediction**: Instant evaluation of customer churn risk percentage, risk level category (Low, Medium, High), and classification outcome.
-- 💡 **Actionable Business Recommendations**: Dynamically generates tailored retention strategies based on contract type, internet service, monthly spend, and tenure.
+- 🔮 **Real-Time Machine Learning Prediction**: Instant evaluation of customer churn risk percentage, risk level category (*Low Risk*, *Medium Risk*, *High Risk*), and classification outcome.
+- 💡 **Actionable Retention Recommendations**: Dynamically generates tailored retention strategies based on contract type, internet service, monthly spend, and tenure.
 - ⚙️ **Domain Feature Engineering**: Automatically derives advanced metrics such as Customer Lifetime Value (CLV), Service Depth Count, Average Monthly Spend, and Contract Risk Flags.
 - 📊 **Executive Analytics Suite**: Dynamic dashboard featuring churn distribution, contract breakdown, monthly charge distributions, feature importances, and tenure analytics powered by Chart.js.
-- 📜 **Historical Prediction Audit Log**: SQLite database integration storing every prediction query with inputs, timestamp, generated customer IDs (`CHURN-100x`), and outcome history.
+- 📜 **Historical Audit Trail**: SQLite database integration storing every prediction query with inputs, timestamp, generated customer IDs (`CHURN-100x`), and outcome history.
 - 💻 **Standalone CLI & Automated Tests**: CLI script (`predict_custom.py`) for custom evaluations and test coverage (`backend/test_predict.py`).
 
 ---
@@ -32,7 +33,7 @@ Customer churn is one of the most critical metrics for subscription-based teleco
 ## 🏗️ Project Architecture & Structure
 
 ```
-Customer-Churn-Prediction/
+ChurnAI/
 ├── backend/
 │   ├── database.py         # SQLite connection & SQLAlchemy ORM model
 │   ├── main.py             # FastAPI REST endpoints & static file serving
@@ -61,7 +62,7 @@ Customer-Churn-Prediction/
 
 ---
 
-## 🛠️ Step-by-Step Technical Implementation (How It Was Built)
+## 🛠️ Step-by-Step Technical Implementation
 
 ### 1. Exploratory Data Analysis & Preprocessing
 - **Dataset**: [IBM Telco Customer Churn Dataset on Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) (`Dataset.csv`), containing 7,043 customer records across demographics, account information, and subscribed services.
@@ -160,12 +161,12 @@ Domain features were engineered to increase model sensitivity and predictive cap
 - Python 3.10 or higher
 - Git
 
-### Installation Steps
+### Quickstart
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/Customer-Churn-Prediction.git
-   cd Customer-Churn-Prediction
+   git clone https://github.com/JestuAshok/ChurnAI.git
+   cd ChurnAI
    ```
 
 2. **Set Up Virtual Environment**:
@@ -182,26 +183,25 @@ Domain features were engineered to increase model sensitivity and predictive cap
    pip install -r backend/requirements.txt
    ```
 
-4. **Launch the Server**:
+4. **Launch the Application**:
    ```bash
    python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
    ```
 
-5. **Access the Application**:
-   Open your browser and navigate to:
-   - **Web Interface**: `http://127.0.0.1:8000`
-   - **Interactive API Docs (Swagger UI)**: `http://127.0.0.1:8000/docs`
+5. **Access Web Interfaces**:
+   - **Executive Dashboard**: `http://127.0.0.1:8000`
+   - **Interactive API Documentation (Swagger UI)**: `http://127.0.0.1:8000/docs`
 
 ---
 
-## 🧪 Running CLI Predictions & Tests
+## 🧪 Running CLI Predictions & Automated Tests
 
-- **Run CLI Prediction Script**:
+- **Execute CLI Prediction Script**:
   ```bash
   python predict_custom.py
   ```
 
-- **Execute Backend Unit Tests**:
+- **Run Automated Backend Unit Tests**:
   ```bash
   pytest backend/test_predict.py
   ```
@@ -210,4 +210,4 @@ Domain features were engineered to increase model sensitivity and predictive cap
 
 ## 📜 License
 
-This project is open-source under the [MIT License](LICENSE).
+Distributed under the [MIT License](LICENSE). Created by [Jestu Ashok](https://github.com/JestuAshok).

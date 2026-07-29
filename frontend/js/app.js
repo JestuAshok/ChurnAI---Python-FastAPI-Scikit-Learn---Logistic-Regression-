@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof initAnalyticsCharts === 'function') {
             initAnalyticsCharts();
         }
-    } else if (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('Customer-Churn-Prediction/')) {
+    } else if (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('Customer-Churn-Prediction/') || currentPath.endsWith('ChurnAI/')) {
         initDashboard();
     }
 });
