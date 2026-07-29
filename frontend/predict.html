@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Churn - ChurnAI Customer Retention</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="logo-text">ChurnAI</div>
+        </div>
+        <nav class="nav-links">
+            <li class="nav-item">
+                <a href="index.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="7" height="9" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="14" y="3" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="14" y="12" width="7" height="9" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="3" y="16" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a href="predict.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Predict Customer
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="analytics.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Analytics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="history.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Prediction History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    About Project
+                </a>
+            </li>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="version-tag">Version 1.0.0</div>
+        </div>
+    </aside>
+
+    <!-- MAIN PAGES CONTENT -->
+    <main class="main-content">
+        <div class="header-container">
+            <div>
+                <h1 class="page-title">Predict Churn Risk</h1>
+                <p class="page-subtitle">Input customer metrics to run real-time churn diagnostics</p>
+            </div>
+        </div>
+
+        <div class="predict-layout">
+            <!-- Left Side: Interactive Inputs Form -->
+            <div class="glass-card">
+                <!-- Load Demo Customer Section -->
+                <div class="demo-loader-section" style="border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1.25rem; margin-bottom: 1.25rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                        <div>
+                            <h4 style="margin: 0; color: white; font-size: 0.95rem;">Load Customer from Dataset</h4>
+                            <p style="margin: 0.2rem 0 0 0; font-size: 0.75rem; color: var(--text-muted);">Autofill the form using an existing customer record index (e.g., 100).</p>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <input type="number" id="demo-customer-index" class="form-input" style="width: 100px; margin: 0; padding: 0.4rem 0.6rem; height: 36px;" min="0" placeholder="Index" value="100">
+                            <button type="button" id="btn-load-demo" class="btn-primary" style="margin: 0; padding: 0 1rem; font-size: 0.8rem; height: 36px; width: auto; min-width: 70px; display: flex; align-items: center; justify-content: center; border-radius: 6px;">Load</button>
+                        </div>
+                    </div>
+                    <div id="demo-load-status" style="margin-top: 0.5rem; font-size: 0.8rem; display: none;"></div>
+                </div>
+
+                <form id="churn-predict-form">
+                    
+                    <!-- Section 1: Demographics -->
+                    <div class="form-group-section">
+                        <h3 class="form-section-title">1. Demographics</h3>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="gender">Gender</label>
+                                <select id="gender" class="form-input">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="SeniorCitizen">Senior Citizen</label>
+                                <select id="SeniorCitizen" class="form-input">
+                                    <option value="0">No (Under 65)</option>
+                                    <option value="1">Yes (65+)</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="Partner">Has Partner</label>
+                                <select id="Partner" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="Dependents">Has Dependents</label>
+                                <select id="Dependents" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Services Subscriptions -->
+                    <div class="form-group-section">
+                        <h3 class="form-section-title">2. Services & Connections</h3>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="PhoneService">Phone Service</label>
+                                <select id="PhoneService" class="form-input">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="MultipleLines">Multiple Lines</label>
+                                <select id="MultipleLines" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No phone service">No phone service</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="InternetService">Internet Service Type</label>
+                                <select id="InternetService" class="form-input">
+                                    <option value="DSL">DSL</option>
+                                    <option value="Fiber optic">Fiber optic</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="OnlineSecurity">Online Security</label>
+                                <select id="OnlineSecurity" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="OnlineBackup">Online Backup</label>
+                                <select id="OnlineBackup" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="DeviceProtection">Device Protection</label>
+                                <select id="DeviceProtection" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="TechSupport">Tech Support</label>
+                                <select id="TechSupport" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="StreamingTV">Streaming TV</label>
+                                <select id="StreamingTV" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="StreamingMovies">Streaming Movies</label>
+                                <select id="StreamingMovies" class="form-input">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Billing & Contracts -->
+                    <div class="form-group-section">
+                        <h3 class="form-section-title">3. Billing & Contract Details</h3>
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="Contract">Contract Term</label>
+                                <select id="Contract" class="form-input">
+                                    <option value="Month-to-month">Month-to-month</option>
+                                    <option value="One year">One year</option>
+                                    <option value="Two year">Two year</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="PaperlessBilling">Paperless Billing</label>
+                                <select id="PaperlessBilling" class="form-input">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="PaymentMethod">Payment Method</label>
+                                <select id="PaymentMethod" class="form-input">
+                                    <option value="Electronic check">Electronic check</option>
+                                    <option value="Mailed check">Mailed check</option>
+                                    <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                                    <option value="Credit card (automatic)">Credit card (automatic)</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="tenure">Tenure (Months)</label>
+                                <input type="number" id="tenure" class="form-input" min="0" max="72" value="12" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="MonthlyCharges">Monthly Charges ($)</label>
+                                <input type="number" id="MonthlyCharges" class="form-input" min="0" step="0.01" value="65.00" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REACTIVE CALCULATED SUMMARY -->
+                    <div class="calc-summary">
+                        <div class="calc-title">Reactive Engineered Features</div>
+                        <div class="calc-grid">
+                            <div class="calc-item">
+                                Customer Lifetime Value (CLV)
+                                <div id="calc-clv" class="calc-val">$0.00</div>
+                            </div>
+                            <div class="calc-item">
+                                Average Monthly Spend
+                                <div id="calc-avg-spend" class="calc-val">$0.00</div>
+                            </div>
+                            <div class="calc-item">
+                                Active Services Count
+                                <div id="calc-services" class="calc-val">0</div>
+                            </div>
+                            <div class="calc-item">
+                                Long Term Customer
+                                <div id="calc-long-term" class="calc-val">No</div>
+                            </div>
+                            <div class="calc-item">
+                                Monthly Contract Flag
+                                <div id="calc-monthly-contract" class="calc-val">Yes</div>
+                            </div>
+                            <div class="calc-item">
+                                Internet Service Addons
+                                <div id="calc-internet-count" class="calc-val">0</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <button type="submit" class="btn-primary">
+                        <div class="spinner"></div>
+                        <span class="btn-text">Predict Churn Risk</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Side: Diagnostics Output -->
+            <div class="prediction-result-wrapper">
+                <!-- Result Placeholders -->
+                <div id="placeholder-result-card" class="placeholder-result-card">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    <h3>Diagnostic Diagnostics Standby</h3>
+                    <p style="font-size: 0.85rem; margin-top: 0.5rem; line-height: 1.4;">Submit customer information to generate predictive risk assessments, classification, and loyalty recommendations.</p>
+                </div>
+
+                <!-- Churn Probability Result Card -->
+                <div id="prediction-result-card" class="glass-card result-card">
+                    <div class="result-header">Customer Retention Score</div>
+                    <div id="res-probability" class="result-probability">0.00%</div>
+                    <div id="res-prediction" class="result-label">Not Likely to Churn</div>
+                    <span id="res-badge" class="result-badge">Low Churn Risk</span>
+                    
+                    <div style="margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; text-align: left;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Assigned ID:</span>
+                        <strong id="res-customer-id" style="color: white; float: right; font-family: monospace;">CHURN-0000</strong>
+                    </div>
+                </div>
+
+                <!-- Actionable Business Recommendations Card -->
+                <div id="recommendations-card" class="glass-card recommendations-card">
+                    <h3 class="section-header" style="font-size: 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.75rem;">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--accent-teal)" stroke-width="2" style="vertical-align: middle;">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        Business Actions Plan
+                    </h3>
+                    <ul id="res-recommendations" class="recs-list">
+                        <!-- Dynamic business recommendations listed here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

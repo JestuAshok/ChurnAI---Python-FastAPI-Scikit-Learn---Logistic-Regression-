@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - ChurnAI Customer Retention</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Plotly.js CDN -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="logo-text">ChurnAI</div>
+        </div>
+        <nav class="nav-links">
+            <li class="nav-item">
+                <a href="index.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="7" height="9" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="14" y="3" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="14" y="12" width="7" height="9" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="3" y="16" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="predict.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Predict Customer
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a href="analytics.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Analytics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="history.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Prediction History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    About Project
+                </a>
+            </li>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="version-tag">Version 1.0.0</div>
+        </div>
+    </aside>
+
+    <!-- MAIN PAGES CONTENT -->
+    <main class="main-content">
+        <div class="header-container">
+            <div>
+                <h1 class="page-title">SaaS Analytics & Insights</h1>
+                <p class="page-subtitle">Interactive visual exploration of churn indicators and model configurations</p>
+            </div>
+        </div>
+
+        <!-- LOADER FOR DATA AGGREGATION -->
+        <div id="analytics-loader" class="glass-card" style="text-align: center; padding: 3rem; margin-bottom: 2rem;">
+            <div class="spinner" style="display: inline-block; width: 32px; height: 32px; border-width: 3px; margin-bottom: 1rem;"></div>
+            <h3>Generating Model Diagnostics...</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Processing historical data cohorts and extracting model coefficients from pkl assets.</p>
+        </div>
+
+        <!-- PLOTLY CHARTS LAYOUT GRID -->
+        <div class="analytics-grid">
+            <!-- 1. Customer Churn Ratio (Donut Chart) -->
+            <div class="glass-card chart-card">
+                <div id="chart-churn-dist" class="chart-container"></div>
+            </div>
+
+            <!-- 2. Contract Type vs Churn (Grouped Bar Chart) -->
+            <div class="glass-card chart-card">
+                <div id="chart-contract-churn" class="chart-container"></div>
+            </div>
+
+            <!-- 3. Monthly Charges vs Churn (Box/Violin Plot) -->
+            <div class="glass-card chart-card">
+                <div id="chart-charges-churn" class="chart-container"></div>
+            </div>
+
+            <!-- 4. Tenure vs Churn (Violin/Box Plot) -->
+            <div class="glass-card chart-card">
+                <div id="chart-tenure-churn" class="chart-container"></div>
+            </div>
+
+            <!-- 5. Internet Service vs Churn (Grouped Bar Chart) -->
+            <div class="glass-card chart-card">
+                <div id="chart-internet-churn" class="chart-container"></div>
+            </div>
+
+            <!-- 6. Prediction Probability Distribution (Histogram, full width) -->
+            <div class="glass-card chart-card full-width-card">
+                <div id="chart-prob-dist" class="chart-container"></div>
+            </div>
+
+            <!-- 7. Feature Importance (Horizontal Bar Chart, full width) -->
+            <div class="glass-card chart-card full-width-card">
+                <div id="chart-feature-importance" class="chart-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ChurnAI Customer Retention</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="logo-text">ChurnAI</div>
+        </div>
+        <nav class="nav-links">
+            <li class="nav-item active">
+                <a href="index.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="7" height="9" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="14" y="3" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="14" y="12" width="7" height="9" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <rect x="3" y="16" width="7" height="5" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="predict.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M8.5 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Predict Customer
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="analytics.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Analytics
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="history.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                    Prediction History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <line x1="12" y1="16" x2="12" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    About Project
+                </a>
+            </li>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="version-tag">Version 1.0.0</div>
+        </div>
+    </aside>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="main-content">
+        <div class="header-container">
+            <div>
+                <h1 class="page-title">Executive Churn Dashboard</h1>
+                <p class="page-subtitle">SaaS analytics portal for real-time customer retention monitoring</p>
+            </div>
+        </div>
+
+        <!-- TOP KPI CARD GRID -->
+        <div class="card-grid-kpis">
+            <div class="glass-card kpi-card purple">
+                <div class="kpi-header">
+                    <span>Total Customers</span>
+                    <div class="kpi-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-value">7,032</div>
+                <div class="kpi-desc">Historical cohort size</div>
+            </div>
+
+            <div class="glass-card kpi-card pink">
+                <div class="kpi-header">
+                    <span>Customers Churned</span>
+                    <div class="kpi-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm12-4h-6"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-value">1,869</div>
+                <div class="kpi-desc">Total churn events recorded</div>
+            </div>
+
+            <div class="glass-card kpi-card teal">
+                <div class="kpi-header">
+                    <span>Retention Rate</span>
+                    <div class="kpi-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4L12 14.01l-3-3"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-value">73%</div>
+                <div class="kpi-desc">Average loyalty score</div>
+            </div>
+
+            <div class="glass-card kpi-card orange">
+                <div class="kpi-header">
+                    <span>Model F1-Score</span>
+                    <div class="kpi-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.364-6.364l.707.707M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-value">63.3%</div>
+                <div class="kpi-desc">ROC-AUC: 83.75%</div>
+            </div>
+        </div>
+
+        <!-- MAIN LAYOUT GRID -->
+        <div class="dashboard-grid">
+            <!-- Left Panel: Core Model Specs -->
+            <div class="glass-card">
+                <h2 class="section-header">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-purple)" stroke-width="2" style="vertical-align: middle;">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                        <polyline points="2 17 12 22 22 17"/>
+                        <polyline points="2 12 12 17 22 12"/>
+                    </svg>
+                    Machine Learning Infrastructure
+                </h2>
+                <div class="parameter-list" style="margin-top: 1.5rem;">
+                    <div class="parameter-row">
+                        <span class="parameter-label">Final Classifier Model</span>
+                        <span class="parameter-value"><span class="gradient-badge">Logistic Regression</span></span>
+                    </div>
+                    <div class="parameter-row">
+                        <span class="parameter-label">Optimized Decision Threshold</span>
+                        <span class="parameter-value">0.38</span>
+                    </div>
+                    <div class="parameter-row">
+                        <span class="parameter-label">ROC Area Under Curve (AUC)</span>
+                        <span class="parameter-value">83.75%</span>
+                    </div>
+                    <div class="parameter-row">
+                        <span class="parameter-label">Dataset Base Size</span>
+                        <span class="parameter-value">7,043 Customers</span>
+                    </div>
+                    <div class="parameter-row">
+                        <span class="parameter-label">Engineered Features Count</span>
+                        <span class="parameter-value">6 Pipeline Variables</span>
+                    </div>
+                    <div class="parameter-row">
+                        <span class="parameter-label">Prediction History Connection</span>
+                        <span class="parameter-value">SQLite Database</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem;">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                        This platform leverages an optimized Logistic Regression classifier to calculate individual subscriber churn risk levels. By applying a tuned classification threshold of <strong>0.38</strong> (derived via F1-score maximization), the model balances precision and recall to intercept high-probability customer exits before they materialize.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Panel: Recent Predictions Activity Log -->
+            <div class="glass-card" style="display: flex; flex-direction: column;">
+                <h2 class="section-header">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="var(--accent-teal)" stroke-width="2" style="vertical-align: middle;">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    Recent Activity
+                </h2>
+                <div class="table-responsive" style="margin-top: 1.5rem; flex-grow: 1; border: none;">
+                    <table class="history-table" style="font-size: 0.85rem;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Risk %</th>
+                                <th>Risk Level</th>
+                                <th>Label</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-activity-body">
+                            <!-- Dynamic recent predictions loaded here -->
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: var(--text-muted); padding: 2rem 0;">
+                                    Loading prediction history...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
